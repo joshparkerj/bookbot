@@ -27,6 +27,9 @@ def get_char_counts(text):
 def get_char_counts_report(text):
  char_counts = get_char_counts(text)
  list_of_dicts = [{ 'char': char, 'count': count } for char, count in char_counts.items()]
+ # filter to only alpha chars
+ list_of_dicts = [d for d in list_of_dicts if d['char'].isalpha()]
+
  list_of_dicts.sort(reverse=True, key=lambda d: d['count'])
  return '\n'.join([f'The \'{'\\n' if count_dict['char'] == '\n' else count_dict['char']}\' character was found {count_dict['count']} time{'' if count_dict['count'] == 1 else 's'}' for count_dict in list_of_dicts])
 main()
